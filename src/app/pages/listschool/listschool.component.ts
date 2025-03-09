@@ -30,4 +30,10 @@ export class ListschoolComponent {
         this.schools = data;
       });
   }
+
+  
+
+  deleteSchool(id: number | null) {
+    this.schools = this.schools.filter(data => data.schoolId !== id);
+}
 }

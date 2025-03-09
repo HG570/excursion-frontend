@@ -11,6 +11,7 @@ import { SchoolSelectionService } from '../../../services/school-selection.servi
 })
 export class ConfirmModalComponent {
   @Input() schoolId: number | null = null;
+  @Input() deleteSchool!: (id: number | null) => void;
 
   constructor(private apiService: ApiService, private toastService: ToastService, private schoolSelectionService: SchoolSelectionService) { 
     this.schoolSelectionService.selectedSchoolId$.subscribe((id) => {
@@ -22,6 +23,9 @@ export class ConfirmModalComponent {
     if (this.schoolId !== null) {
       this.apiService.deleteSchool(this.schoolId).subscribe({
         next: (response) => {
+          if (this.deleteSchool) {
+            this.deleteSchool(this.schoolId);
+          }
           this.toastService.show('Escola deletada!', 'success');
         },
         error: (err) => this.toastService.show('Erro ao deletar escola!', 'error')
