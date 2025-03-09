@@ -11,61 +11,61 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
   getAllExcursion(): Observable<any> {
-    return this.http.get(`${this.baseUrl}${API_ENDPOINTS.EXCURSION}/all-excursion`, { withCredentials: true });
+    return this.http.get(`${this.baseUrl}${API_ENDPOINTS.EXCURSION}/all-excursion`);
   }
 
   getExcursion(excursionId: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}${API_ENDPOINTS.EXCURSION}/show-excursion/${excursionId}`, { withCredentials: true });
+    return this.http.get(`${this.baseUrl}${API_ENDPOINTS.EXCURSION}/show-excursion/${excursionId}`);
   }
 
   addExcursion(excursionData: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}${API_ENDPOINTS.EXCURSION}/add`, excursionData, { withCredentials: true });
+    return this.http.post(`${this.baseUrl}${API_ENDPOINTS.EXCURSION}/add`, excursionData);
   }
 
   deleteExcursion(excursionId: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}${API_ENDPOINTS.EXCURSION}/delete/${excursionId}`, { withCredentials: true });
+    return this.http.delete(`${this.baseUrl}${API_ENDPOINTS.EXCURSION}/delete/${excursionId}`);
   }
 
   updateExcursion(excursionId: number, excursionData: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}${API_ENDPOINTS.EXCURSION}/edit/${excursionId}`, excursionData, { withCredentials: true });
+    return this.http.put(`${this.baseUrl}${API_ENDPOINTS.EXCURSION}/edit/${excursionId}`, excursionData);
   }
 
   loginManager(managerData: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}${API_ENDPOINTS.MANAGER}/login`, managerData, { withCredentials: true });
+    return this.http.post(`${this.baseUrl}${API_ENDPOINTS.MANAGER}/login`, managerData);
   }
   storeToken(token: string) {
     document.cookie = `token=${token}; path=/; Secure`;
   }
 
   authManager(): Observable<boolean> {
-    return this.http.get<{ valid?: string, error?: string }>(`${this.baseUrl}${API_ENDPOINTS.MANAGER}/auth`, { withCredentials: true }).pipe(
+    return this.http.get<{ valid?: string, error?: string }>(`${this.baseUrl}${API_ENDPOINTS.MANAGER}/auth`).pipe(
       map(response => response.valid === 'True'),
       catchError(() => [false])
     );
   }
 
   getAllSchool(): Observable<any>{
-    return this.http.get(`${this.baseUrl}${API_ENDPOINTS.SCHOOL}/all-school`, { withCredentials: true })
+    return this.http.get(`${this.baseUrl}${API_ENDPOINTS.SCHOOL}/all-school`)
   }
 
   getSchools(): Observable<any>{
-    return this.http.get(`${this.baseUrl}${API_ENDPOINTS.SCHOOL}/schools`, { withCredentials: true })
+    return this.http.get(`${this.baseUrl}${API_ENDPOINTS.SCHOOL}/schools`)
   }
 
   getSchool(schoolId: number): Observable<any>{
-    return this.http.get(`${this.baseUrl}${API_ENDPOINTS.SCHOOL}/show-school/${schoolId}`, { withCredentials: true })
+    return this.http.get(`${this.baseUrl}${API_ENDPOINTS.SCHOOL}/show-school/${schoolId}`)
   }
 
   addSchool(schoolData: any): Observable<any>{
-    return this.http.post(`${this.baseUrl}${API_ENDPOINTS.SCHOOL}/add`, schoolData, { withCredentials: true })
+    return this.http.post(`${this.baseUrl}${API_ENDPOINTS.SCHOOL}/add`, schoolData)
   }
 
   updateSchool(schoolId: number, schoolData: any): Observable<any>{
-    return this.http.put(`${this.baseUrl}${API_ENDPOINTS.SCHOOL}/edit/${schoolId}`, schoolData, { withCredentials: true })
+    return this.http.put(`${this.baseUrl}${API_ENDPOINTS.SCHOOL}/edit/${schoolId}`, schoolData)
   }
   
   deleteSchool(schoolId: number): Observable<any>{
-    return this.http.delete(`${this.baseUrl}${API_ENDPOINTS.SCHOOL}/delete/${schoolId}`, { withCredentials: true })
+    return this.http.delete(`${this.baseUrl}${API_ENDPOINTS.SCHOOL}/delete/${schoolId}`)
   }
 
 }
