@@ -15,7 +15,7 @@ import { NgFor } from '@angular/common';
   styleUrl: './listschool.component.scss'
 })
 
-export class ListschoolComponent {
+export class ListschoolComponent implements OnInit {
   schools: any[] = [];
   selectedSchoolId: number | null = null;
 
@@ -25,11 +25,9 @@ export class ListschoolComponent {
     this.selectedSchoolId = id;
   }
 
-  ngOnChanges() {
-    setTimeout(() => {
+  ngOnInit() {
       this.apiService.getAllSchool().subscribe(data => {
         this.schools = data;
       });
-    }, 50);
   }
 }

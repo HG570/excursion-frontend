@@ -23,11 +23,9 @@ selectedExcursionId: number | null = null;
     this.selectedExcursionId = id;
   }
 
-  ngOnChanges() {
-    setTimeout(() => {
+  ngOnInit() {
       this.apiService.getAllExcursion().subscribe(data => {
         this.excursions = data;
       });
-    }, 50);
   }
 }
