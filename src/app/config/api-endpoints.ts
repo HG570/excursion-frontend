@@ -1,5 +1,7 @@
+import { environment } from "../environments/environment";
+
 export const API_ENDPOINTS = {
-    BASE_URL: 'https://website.com',
+    BASE_URL: environment.BASE_URL,
     EXCURSION: '/excursion',
     MANAGER: '/manager',
     SCHOOL: '/school'
