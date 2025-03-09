@@ -19,7 +19,7 @@ export class ListschoolComponent {
   schools: any[] = [];
   selectedSchoolId: number | null = null;
 
-  constructor(private toastService: ToastService, private apiService: ApiService) { }
+  constructor(private toastService: ToastService, private apiService: ApiService) { this.schools = []; }
 
   setSelectedSchoolId(id: number) {
     this.selectedSchoolId = id;
@@ -35,8 +35,8 @@ export class ListschoolComponent {
     console.log(this.schools);
     if (!this.schools) {
       this.schools = [];
-      return;
+      return; 
     }
     this.schools = this.schools.filter(data => data.schoolId !== id);
-}
+  }
 }
