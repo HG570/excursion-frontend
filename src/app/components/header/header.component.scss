@@ -1,0 +1,17 @@
+.logo {
+    
+    width: 50%;
+    height: auto;
+
+    @media (min-width: 768px) {
+        width: 30%;
+    }
+}
+
+.container {
+    width: auto;
+}
+
+.navbar-brand{
+    margin-left: 16px;
+}

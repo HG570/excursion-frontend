@@ -1,0 +1,8 @@
+main {
+    padding: 5% 10% 10%;
+    flex-direction: column;
+    gap: 2dvw;
+    @media (min-width: 768px) { 
+        padding: 2dvw 15% 10dvw; 
+    }    
+}

@@ -1,0 +1,38 @@
+<div class="page">
+    <app-back></app-back>
+    <div class="page">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome da Excursão</th>
+                    <th scope="col">Escola</th>
+                    <th scope="col">Link</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let excursion of excursions; let i = index">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ excursion.name }}</td>
+                    <td>{{ excursion.school.name }}</td>
+                    <td>{{ excursion.link }}</td>
+                    <td class="tools">
+                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit-excursion-modal" (click)="setSelectedExcursionId(excursion.id_excursion)" >
+                            Editar
+                        </button>
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#info-excursion-modal" (click)="setSelectedExcursionId(excursion.id_excursion)">
+                            Visualizar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <app-infoexcursion-modal class="modal fade" id="info-excursion-modal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" [excursionId]="selectedExcursionId"/>
+    <app-editexcursion-modal class="modal fade" id="edit-excursion-modal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" [excursionId]="selectedExcursionId" />
+    <app-delete-excursion-modal class="modal fade" id="delete-excursion-modal" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" />
+</div>

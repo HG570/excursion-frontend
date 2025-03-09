@@ -1,0 +1,68 @@
+<div class="page">
+    <app-back></app-back>
+    <form [formGroup]="addSchoolForm" class="card form" (ngSubmit)="onSubmit()">
+        <div class="line">
+            <button class="btn btn-close me-2 m-auto" (click)="clearAll()">
+            </button>
+        </div>
+        <div class="mb-3 line">
+            <div class="input">
+                <label for="name" class="form-label">Nome da Escola</label>
+                <input type="text" class="form-control" id="name" formControlName="name" required>
+            </div>
+            <div class="input">
+                <label for="cnpj" class="form-label">CNPJ</label>
+                <input type="text" class="form-control" id="cnpj" formControlName="cnpj" maxlength="18" required>
+            </div>
+        </div>
+        <div class="mb-3 line">
+            <div class="input">
+                <label for="address" class="form-label">Logradouro</label>
+                <input type="text" class="form-control" formControlName="address" id="address" formControlName="address"
+                    required>
+            </div>
+            <div>
+                <label for="number" class="form-label">Número</label>
+                <input type="text" class="form-control" formControlName="number" id="number" formControlName="number"
+                    required>
+            </div>
+        </div>
+
+        <div class="mb-3 line">
+            <div class="input">
+                <label for="neighborhood" class="form-label">Bairro</label>
+                <input type="text" class="form-control" formControlName="neighborhood" id="neighborhood"
+                    formControlName="neighborhood" required>
+            </div>
+            <div class="">
+                <label for="postal_code" class="form-label">CEP</label>
+                <input type="text" class="form-control" formControlName="postal_code" id="postal_code" (blur)="searchCEP()"
+                    maxlength="9" required>
+            </div>
+        </div>
+        <div class="mb-3 line">
+            <div class="input">
+                <label for="city" class="form-label">Cidade</label>
+                <input type="text" class="form-control" formControlName="city" id="city" required>
+            </div>
+
+            <div class="">
+                <label for="state" class="form-label">UF</label>
+                <select id="state" class="form-select" formControlName="state" required>
+                    <option value="ES">ES</option>
+                    <option value="MG">MG</option>
+                    <option value="RJ">RJ</option>
+                    <option value="SP">SP</option>
+                </select>
+            </div>
+        </div>
+        <div class="mb-3 input">
+            <label for="type" class="form-label">Tipo de Escola</label>
+            <select id="type" class="form-select" formControlName="type" required>
+                <option value=0>Publica</option>
+                <option value=1>Particular</option>
+            </select>
+        </div>
+            <button type="submit" [disabled]="addSchoolForm.invalid" class="btn btn-primary">Adicionar</button>
+    </form>
+</div>

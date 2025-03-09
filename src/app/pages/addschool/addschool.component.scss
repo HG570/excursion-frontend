@@ -1,0 +1,37 @@
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10%;
+    width: 100%;
+    @media (min-width: 768px) {  
+        padding: 5%;
+    }
+}
+
+.page {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    width: 100%;
+    gap: 2dvw;
+    @media (min-width: 768px) { 
+        
+    }    
+}
+
+.line {
+    display: flex;
+    width: 100%;
+    gap: 2dvw;
+    flex-direction: column;
+
+    @media (min-width: 768px) { 
+        flex-direction: row; 
+    }  
+}
+
+.input {
+    width: 100%;
+}

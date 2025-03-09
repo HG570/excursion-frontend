@@ -1,0 +1,43 @@
+<div class="modal-dialog">
+    <div class="school-modal modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Dados da Excursão</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="school-info">
+                <p class="title">Nome da Excursão:</p>
+                <p>{{ excursionData?.name }}</p>
+            </div>
+            <div class="school-info">
+                <p class="title">Data:</p>
+                <p>{{ excursionData?.date }}</p>
+            </div>
+            <div class="school-info">
+                <p class="title">Escola:</p>
+                <p>{{ excursionData?.school?.name }}</p>
+            </div>
+            <div class="school-info">
+                <p class="title">Link:</p>
+                <p><a [href]="excursionData?.link">[Link SagTur]</a></p>
+            </div>
+            <div class="school-info">
+                <p class="title">Banner:</p>
+                <p><a [href]="excursionData?.banner_url">[Link do Banner]</a></p>
+            </div>
+            <div class="school-info">
+                <p class="title">Situação:</p>
+                <p>{{ excursionData?.is_activity ? 'Ativado' : 'Desativado' }}</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit-excursion-modal" (click)="setSelectedExcursionId(excursionData?.id_excursion)">
+                Editar
+            </button>
+            <button class="btn btn-danger"  data-bs-toggle="modal"
+            data-bs-target="#delete-excursion-modal" (click)="setSelectedExcursionId(excursionData?.id_excursion)">
+                Excluir
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+.back {
+    display: flex;
+    gap: 2dvw;
+
+    @media (min-width: 768px) { 
+        gap: 1dvw;
+    }    
+}

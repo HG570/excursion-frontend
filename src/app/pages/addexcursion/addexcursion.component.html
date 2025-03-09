@@ -1,0 +1,46 @@
+<div class="page">
+    <app-back></app-back>
+    <form [formGroup]="addExcursionForm" class="card form" (ngSubmit)="onSubmit()">
+        <div class="line">
+            <button class="btn btn-close me-2 m-auto" (click)="clearAll()">
+            </button>
+        </div>
+        <div class="mb-3 line">
+            <div class="input">
+                <label for="fk_school_id" class="form-label">Escola</label>
+                <select id="fk_school_id" class="form-select" formControlName="fk_school_id" required>
+                    <option>
+                        Selecione uma escola
+                    </option>
+                    <option *ngFor="let school of schools" [value]="+school.id_school">
+                        {{ school.name }}
+                    </option>
+                </select>
+            </div>
+            <div class="input">
+                <label for="link" class="form-label">Link da Excursão</label>
+                <input type="text" class="form-control" id="link" formControlName="link" required>
+            </div>
+        </div>
+        <div class="mb-3 line">
+            <div class="input">
+                <label for="name" class="form-label">Nome da Excursão</label>
+                <input type="text" class="form-control" formControlName="namr" id="name" formControlName="name"
+                    required>
+            </div>
+            <div>
+                <label for="date" class="form-label">Data</label>
+                <input type="date" class="form-control" formControlName="date" id="date" formControlName="date"
+                    required>
+            </div>
+        </div>
+        <div class="mb-3 line">
+            <div class="input">
+                <label for="banner_url" class="form-label">Url do Banner</label>
+                <input type="text" class="form-control" formControlName="banner_url" id="banner_url"
+                    formControlName="banner_url" required>
+            </div>
+        </div>
+        <button type="submit" [disabled]="addExcursionForm.invalid" class="btn btn-primary">Adicionar</button>
+    </form>
+</div>

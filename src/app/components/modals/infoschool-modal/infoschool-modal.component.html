@@ -1,0 +1,35 @@
+<div class="modal-dialog">
+    <div class="school-modal modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Dados da Escola</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="school-info">
+                <p class="title">Nome da Escola:</p>
+                <p>{{ schoolData?.school?.name }}</p>
+            </div>
+            <div class="school-info">
+                <p class="title">CNPJ:</p>
+                <p>{{ schoolData?.school?.cnpj }}</p>
+            </div>
+            <div class="school-info">
+                <p class="title">Endereço:</p>
+                <p>{{ schoolData?.school?.address?.address }}, {{ schoolData?.school?.address?.number }} - {{ schoolData?.school?.address?.neighborhood }}, {{ schoolData?.school?.address?.city }} - {{ schoolData?.school?.address?.state }} {{ schoolData?.school?.address?.postal_code }}</p>
+            </div>
+            <div class="school-info">
+                <p class="title">Tipo:</p>
+                <p>{{ schoolData?.school?.type ? 'Particular' : 'Pública' }}</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit-school-modal" (click)="setSelectedSchoolId(schoolData?.school?.id_school)">
+                Editar
+            </button>
+            <button class="btn btn-danger"  data-bs-toggle="modal"
+            data-bs-target="#confirm-modal" (click)="setSelectedSchoolId(this.schoolId)">
+                Excluir
+            </button>
+        </div>
+    </div>
+</div>

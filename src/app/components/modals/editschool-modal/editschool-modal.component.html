@@ -1,0 +1,73 @@
+<div class="modal-dialog">
+    <div class="school-modal modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Escola</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="editSchoolForm" class="form" (ngSubmit)="onSubmit()">
+                <div class="mb-3 line">
+                    <div class="input">
+                        <label for="name" class="form-label">Nome da Escola</label>
+                        <input type="text" class="form-control" id="name" formControlName="name" required>
+                    </div>
+                </div>
+                <div class="mb-3 line">
+                    <div class="input">
+                        <label for="cnpj" class="form-label">CNPJ</label>
+                        <input type="text" class="form-control" id="cnpj" formControlName="cnpj" maxlength="18" required>
+                    </div>
+                </div>
+                <div class="mb-3 line">
+                    <div class="input">
+                        <label for="address" class="form-label">Logradouro</label>
+                        <input type="text" class="form-control" formControlName="address" id="address" required>
+                    </div>
+                    <div class="input-state">
+                        <label for="number" class="form-label">Número</label>
+                        <input type="text" class="form-control" formControlName="number" id="number" required>
+                    </div>
+                </div>
+
+                <div class="mb-3 line">
+                    <div class="input">
+                        <label for="neighborhood" class="form-label">Bairro</label>
+                        <input type="text" class="form-control" formControlName="neighborhood" id="neighborhood"
+                            required>
+                    </div>
+                    <div class="">
+                        <label for="postal_code" class="form-label">CEP</label>
+                        <input type="text" class="form-control" formControlName="postal_code" id="postal_code" maxlength="9" required (blur)="searchCEP()">
+                    </div>
+                </div>
+                <div class="mb-3 line">
+                    <div class="input">
+                        <label for="city" class="form-label">Cidade</label>
+                        <input type="text" class="form-control" formControlName="city" id="city" required>
+                    </div>
+
+                    <div class="input-state">
+                        <label for="state" class="form-label">UF</label>
+                        <select id="state" class="form-select" formControlName="state" required>
+                            <option>ES</option>
+                            <option>MG</option>
+                            <option>RJ</option>
+                            <option>SP</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3 line">
+                    <div class="input">
+                        <label for="type" class="form-label">Tipo de Escola</label>
+                        <select id="type" class="form-select" formControlName="type" required>
+                            <option value='0'>Publica</option>
+                            <option value='1'>Particular</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" [disabled]="editSchoolForm.invalid" class="btn btn-primary">Atualizar
+                    Dados</button>
+            </form>
+        </div>
+    </div>
+</div>

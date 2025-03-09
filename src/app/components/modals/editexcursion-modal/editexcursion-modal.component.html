@@ -1,0 +1,55 @@
+<div class="modal-dialog">
+    <div class="school-modal modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Escola</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="editExcursionForm" class="form" (ngSubmit)="onSubmit()">
+                <div class="mb-3 line">
+                    <div class="input">
+                        <label for="fk_school_id" class="form-label">Escola</label>
+                        <select id="fk_school_id" class="form-select" formControlName="fk_school_id" required>
+                            <option>
+                                Selecione uma escola
+                            </option>
+                            <option *ngFor="let school of schools" [value]="+school.id_school">
+                                {{ school.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="input">
+                        <label for="link" class="form-label">Link da Excursão</label>
+                        <input type="text" class="form-control" id="link" formControlName="link" required>
+                    </div>
+                </div>
+                <div class="mb-3 line">
+                    <div class="input">
+                        <label for="name" class="form-label">Nome da Excursão</label>
+                        <input type="text" class="form-control" formControlName="namr" id="name" formControlName="name"
+                            required>
+                    </div>
+                    <div>
+                        <label for="date" class="form-label">Data</label>
+                        <input type="date" class="form-control" formControlName="date" id="date" formControlName="date"
+                            required>
+                    </div>
+                </div>
+                <div class="mb-3 line">
+                    <div class="input">
+                        <label for="banner_url" class="form-label">Url do Banner</label>
+                        <input type="text" class="form-control" formControlName="banner_url" id="banner_url"
+                            formControlName="banner_url" required>
+                    </div>
+                    <div class="input form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" formControlName="is_activity">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">{{
+                            excursionData?.is_activity ? 'Ativado' : 'Desativado' }}</label>
+                    </div>
+                </div>
+                <button type="submit" [disabled]="editExcursionForm.invalid" class="btn btn-primary">Atualizar
+                    Dados</button>
+            </form>
+        </div>
+    </div>
+</div>
