@@ -27,7 +27,7 @@ schools: any[] = [];
     });
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.apiService.getSchools().subscribe(data => {
       this.schools = data;
       console.log(this.schools);
