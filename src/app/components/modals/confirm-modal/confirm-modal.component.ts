@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ToastService } from '../../../services/toast.service';
 import { ApiService } from '../../../services/api.service';
 import { SchoolSelectionService } from '../../../services/school-selection.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-confirm-modal',
@@ -13,7 +14,7 @@ export class ConfirmModalComponent {
   @Input() schoolId: number | null = null;
   @Input() deleteSchool!: (id: number | null) => void;
 
-  constructor(private apiService: ApiService, private toastService: ToastService, private schoolSelectionService: SchoolSelectionService) { 
+  constructor(private apiService: ApiService, private router: Router, private toastService: ToastService, private schoolSelectionService: SchoolSelectionService) { 
     this.schoolSelectionService.selectedSchoolId$.subscribe((id) => {
       this.schoolId = id;
     });
@@ -31,5 +32,6 @@ export class ConfirmModalComponent {
         error: (err) => this.toastService.show('Erro ao deletar escola!', 'error')
       })
     }
+    this.router.navigate(['/lista-escolas']);
   }
 }

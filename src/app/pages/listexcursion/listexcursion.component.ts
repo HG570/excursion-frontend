@@ -28,4 +28,9 @@ selectedExcursionId: number | null = null;
         this.excursions = data;
       });
   }
+
+  ngOnDestroy(): void {
+    this.excursions = [];
+    this.selectedExcursionId = null;
+  }
 }

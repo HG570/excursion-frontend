@@ -39,4 +39,8 @@ export class ListschoolComponent {
     }
     this.schools = this.schools.filter(data => data.schoolId !== id);
   }
+  ngOnDestroy(): void {
+    this.schools = [];
+    this.selectedSchoolId = null;
+  }
 }
