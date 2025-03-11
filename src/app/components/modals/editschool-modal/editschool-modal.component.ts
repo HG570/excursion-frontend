@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class EditschoolModalComponent {
   @Input() schoolId: number | null = null;
+  @Input() updateSchool!: (id: number | null) => void;
   schoolData: any = null;
   editSchoolForm: FormGroup = new FormGroup({});
 
@@ -93,6 +94,9 @@ export class EditschoolModalComponent {
         this.apiService.updateSchool(this.schoolId, schoolData).subscribe({
           next: (response) => {
             this.toastService.show('Escola atualizada com sucesso', 'success');
+            if (this.updateSchool) {
+              this.updateSchool(this.schoolId);
+            }
             console.log('Escola atualizada com sucesso', response);
             this.editSchoolForm.reset();
             this.router.navigate(['/lista-escolas']);

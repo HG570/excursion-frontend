@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { BackComponent } from '../../components/buttons/back/back.component';
 import { InfoschoolModalComponent } from '../../components/modals/infoschool-modal/infoschool-modal.component'
 import { EditschoolModalComponent } from '../../components/modals/editschool-modal/editschool-modal.component';
@@ -15,32 +15,34 @@ import { NgFor } from '@angular/common';
   styleUrl: './listschool.component.scss'
 })
 
-export class ListschoolComponent {
+export class ListschoolComponent implements OnInit {
   schools: any[] = [];
   selectedSchoolId: number | null = null;
 
-  constructor(private toastService: ToastService, private apiService: ApiService) { this.schools = []; }
+  constructor(private toastService: ToastService, private apiService: ApiService, private cdr: ChangeDetectorRef) { this.schools = []; }
 
   setSelectedSchoolId(id: number) {
     this.selectedSchoolId = id;
   }
 
-  ngAfterViewInit() {
-      this.apiService.getAllSchool().subscribe(data => {
-        this.schools = data;
-      });
+  loadSchools() {
+    this.apiService.getAllSchool().subscribe(data => {
+      this.schools = data;
+      this.cdr.detectChanges();
+    });
+  }
+
+  ngOnInit() {
+    this.loadSchools();
   }
   
   deleteSchool(id: number | null) {
-    console.log(this.schools);
-    if (!this.schools) {
-      this.schools = [];
-      return; 
-    }
-    this.schools = this.schools.filter(data => data.schoolId !== id);
+    console.log(id);
+    this.loadSchools();
   }
-  ngOnDestroy(): void {
-    this.schools = [];
-    this.selectedSchoolId = null;
+
+  updateSchool(id: number | null) {
+    console.log(id);
+    this.loadSchools();
   }
 }
