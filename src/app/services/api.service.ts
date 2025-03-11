@@ -30,20 +30,6 @@ export class ApiService {
     return this.http.put(`${this.baseUrl}${API_ENDPOINTS.EXCURSION}/edit/${excursionId}`, excursionData, { withCredentials: true });
   }
 
-  loginManager(managerData: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}${API_ENDPOINTS.MANAGER}/login`, managerData, { withCredentials: true });
-  }
-  storeToken(token: string) {
-    document.cookie = `token=${token}; path=/; Secure`;
-  }
-
-  authManager(): Observable<boolean> {
-    return this.http.get<{ valid?: string, error?: string }>(`${this.baseUrl}${API_ENDPOINTS.MANAGER}/auth`, { withCredentials: true }).pipe(
-      map(response => response.valid === 'True'),
-      catchError(() => [false])
-    );
-  }
-
   getAllSchool(): Observable<any>{
     return this.http.get(`${this.baseUrl}${API_ENDPOINTS.SCHOOL}/all-school`, { withCredentials: true })
   }
