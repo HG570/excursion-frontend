@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import {  FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
@@ -13,6 +13,7 @@ import { NgFor } from '@angular/common';
 })
 export class EditexcursionModalComponent {
 @Input() excursionId: number | null = null;
+@Output() reloadExcursions = new EventEmitter<void>();
 excursionData: any = null;
 editExcursionForm: FormGroup = new FormGroup({});
 schools: any[] = [];
@@ -60,9 +61,8 @@ schools: any[] = [];
       if (this.excursionId) {
         this.apiService.updateExcursion(this.excursionId, excursionData).subscribe({
           next: (response) => {
+            this.reloadExcursions.emit();
             this.toastService.show('Excursão adicionada com sucesso','success');
-            this.router.navigate(['/lista-excursoes']);
-            console.log('Excursao adicionada com sucesso', response);
             this.editExcursionForm.reset();
           },
           error: (err) => this.toastService.show('Erro ao adicionar excursao!','error')

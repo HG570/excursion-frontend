@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { InfoexcursionModalComponent } from "../../components/modals/infoexcursion-modal/infoexcursion-modal.component";
 import { EditexcursionModalComponent } from "../../components/modals/editexcursion-modal/editexcursion-modal.component";
 import { ApiService } from '../../services/api.service';
@@ -17,20 +17,28 @@ export class ListexcursionComponent {
 excursions: any[] = [];
 selectedExcursionId: number | null = null;
 
-  constructor(private toastService: ToastService, private apiService: ApiService) { }
+  constructor(private toastService: ToastService, private apiService: ApiService, private cdr: ChangeDetectorRef) { }
 
   setSelectedExcursionId(id: number) {
     this.selectedExcursionId = id;
   }
-
-  ngAfterViewInit() {
-      this.apiService.getAllExcursion().subscribe(data => {
-        this.excursions = data;
-      });
-  }
-
   ngOnDestroy(): void {
     this.excursions = [];
     this.selectedExcursionId = null;
+  }
+
+  loadExcursions() {
+    this.apiService.getAllExcursion().subscribe(data => {
+      this.excursions = data;
+      this.cdr.detectChanges();
+    });
+  }
+
+  ngOnInit() {
+    this.loadExcursions();
+  }
+  
+  reloadExcursions() {
+    this.loadExcursions();
   }
 }

@@ -36,13 +36,7 @@ export class ListschoolComponent implements OnInit {
     this.loadSchools();
   }
   
-  deleteSchool(id: number | null) {
-    console.log(id);
-    this.loadSchools();
-  }
-
-  updateSchool(id: number | null) {
-    console.log(id);
+  reloadSchools() {
     this.loadSchools();
   }
 }

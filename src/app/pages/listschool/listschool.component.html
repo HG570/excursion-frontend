@@ -34,7 +34,7 @@
     <app-infoschool-modal class="modal fade" id="info-school-modal" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" [schoolId]="selectedSchoolId"/>
     <app-editschool-modal class="modal fade" id="edit-school-modal" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" [schoolId]="selectedSchoolId" />
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" [schoolId]="selectedSchoolId" (reloadSchools)="reloadSchools()" />
     <app-confirm-modal class="modal fade" id="confirm-modal" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" [deleteSchool]="deleteSchool"/>
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" (reloadSchools)="reloadSchools()"/>
 </div>

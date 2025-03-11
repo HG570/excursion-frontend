@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApiService } from '../../../services/api.service';
 import { ViaCepService } from '../../../services/via-cep.service';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class EditschoolModalComponent {
   @Input() schoolId: number | null = null;
-  @Input() updateSchool!: (id: number | null) => void;
+  @Output() reloadSchools = new EventEmitter<void>();
   schoolData: any = null;
   editSchoolForm: FormGroup = new FormGroup({});
 
@@ -94,12 +94,8 @@ export class EditschoolModalComponent {
         this.apiService.updateSchool(this.schoolId, schoolData).subscribe({
           next: (response) => {
             this.toastService.show('Escola atualizada com sucesso', 'success');
-            if (this.updateSchool) {
-              this.updateSchool(this.schoolId);
-            }
-            console.log('Escola atualizada com sucesso', response);
+            this.reloadSchools.emit();
             this.editSchoolForm.reset();
-            this.router.navigate(['/lista-escolas']);
           },
           error: (err) => this.toastService.show('Erro ao editar escola!', 'error')
         })
