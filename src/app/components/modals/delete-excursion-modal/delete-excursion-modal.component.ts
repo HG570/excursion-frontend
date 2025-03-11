@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { ToastService } from '../../../services/toast.service';
 import { ExcursionSelectionService } from '../../../services/excursion-selection.service';
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class DeleteExcursionModalComponent {
   @Input() excursionId: number | null = null;
+  @Output() reloadExcursions = new EventEmitter<void>();
 
   constructor(private apiService: ApiService, private router: Router, private toastService: ToastService, private excursionSelectionService: ExcursionSelectionService) { 
     this.excursionSelectionService.selectedExcursionId$.subscribe((id) => {
@@ -23,6 +24,7 @@ export class DeleteExcursionModalComponent {
     if (this.excursionId !== null) {
       this.apiService.deleteExcursion(this.excursionId).subscribe({
         next: (response) => {
+          this.reloadExcursions.emit();
           this.toastService.show('Excursão deletada!', 'success');
         },
         error: (err) => this.toastService.show('Erro ao deletar excursão!', 'error')
