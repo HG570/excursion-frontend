@@ -1,5 +1,5 @@
 {
-  "name": "control-panel-rpassaingressos",
+  "name": "excursion-system",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:control-panel-rpassaingressos": "node dist/control-panel-rpassaingressos/server/server.mjs"
+    "serve:ssr:excursion-system": "node dist/excursion-system/server/server.mjs"
   },
   "private": true,
   "dependencies": {

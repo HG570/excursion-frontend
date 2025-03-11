@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "control-panel-rpassaingressos": {
+    "excursion-system": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/control-panel-rpassaingressos",
+            "outputPath": "dist/excursion-system",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -56,7 +56,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
+                  "maximumWarning": "700kB",
                   "maximumError": "1MB"
                 },
                 {
@@ -79,10 +79,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "control-panel-rpassaingressos:build:production"
+              "buildTarget": "excursion-system:build:production"
             },
             "development": {
-              "buildTarget": "control-panel-rpassaingressos:build:development"
+              "buildTarget": "excursion-system:build:development"
             }
           },
           "defaultConfiguration": "development"
