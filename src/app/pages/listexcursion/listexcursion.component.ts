@@ -16,15 +16,19 @@ import { DeleteExcursionModalComponent } from "../../components/modals/delete-ex
 export class ListexcursionComponent {
 excursions: any[] = [];
 selectedExcursionId: number | null = null;
+excursionData: any = null;
 
   constructor(private toastService: ToastService, private apiService: ApiService, private cdr: ChangeDetectorRef) { }
 
   setSelectedExcursionId(id: number) {
     this.selectedExcursionId = id;
+    this.loadExcursion(id);
   }
-  ngOnDestroy(): void {
-    this.excursions = [];
-    this.selectedExcursionId = null;
+
+  loadExcursion(id: number) {
+    this.apiService.getExcursion(id).subscribe(data => {
+      this.excursionData = data;
+    });
   }
 
   loadExcursions() {

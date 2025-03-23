@@ -18,11 +18,18 @@ import { NgFor } from '@angular/common';
 export class ListschoolComponent implements OnInit {
   schools: any[] = [];
   selectedSchoolId: number | null = null;
+  schoolData: any = null;
 
   constructor(private toastService: ToastService, private apiService: ApiService, private cdr: ChangeDetectorRef) { this.schools = []; }
 
   setSelectedSchoolId(id: number) {
     this.selectedSchoolId = id;
+  }
+  
+  loadSchool(id: number) {
+    this.apiService.getSchool(id).subscribe(data => {
+      this.schoolData = data;
+    });
   }
 
   loadSchools() {

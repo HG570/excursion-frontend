@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
-import {  FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { ToastService } from '../../../services/toast.service';
@@ -12,11 +12,11 @@ import { NgFor } from '@angular/common';
   styleUrl: './editexcursion-modal.component.scss'
 })
 export class EditexcursionModalComponent {
-@Input() excursionId: number | null = null;
-@Output() reloadExcursions = new EventEmitter<void>();
-excursionData: any = null;
-editExcursionForm: FormGroup = new FormGroup({});
-schools: any[] = [];
+  @Input() excursionId: number | null = null;
+  @Output() reloadExcursions = new EventEmitter<void>();
+  @Input() excursionData: any = null;
+  editExcursionForm: FormGroup = new FormGroup({});
+  schools: any[] = [];
 
   constructor(private fb: FormBuilder, private router: Router, private apiService: ApiService, private toastService: ToastService, private cdr: ChangeDetectorRef) {
     this.editExcursionForm = this.fb.group({
@@ -29,7 +29,7 @@ schools: any[] = [];
     });
   }
 
-  ngOnChanges()  {
+  ngOnChanges() {
     if (this.excursionId) {
       this.getExcursion(this.excursionId);
       this.apiService.getSchools().subscribe(data => {
@@ -37,20 +37,19 @@ schools: any[] = [];
         this.cdr.detectChanges;
       });
     }
-    
+
   }
-  
+
   getExcursion(id: number) {
-    this.apiService.getExcursion(id).subscribe(data => {
-      this.excursionData = data
-      this.editExcursionForm.patchValue({
-        name: this.excursionData?.name,
-        fk_school_id: this.excursionData?.school.id_school,
-        link: this.excursionData?.link,
-        date: this.excursionData?.date,
-        banner_url: this.excursionData?.banner_url,
-        is_activity: !!this.excursionData?.is_activity,
-      });
+    this.excursionData;
+    this.excursionId = id;
+    this.editExcursionForm.patchValue({
+      name: this.excursionData?.name,
+      fk_school_id: this.excursionData?.school.id_school,
+      link: this.excursionData?.link,
+      date: this.excursionData?.date,
+      banner_url: this.excursionData?.banner_url,
+      is_activity: !!this.excursionData?.is_activity,
     });
   }
   onSubmit() {
@@ -62,10 +61,10 @@ schools: any[] = [];
         this.apiService.updateExcursion(this.excursionId, excursionData).subscribe({
           next: (response) => {
             this.reloadExcursions.emit();
-            this.toastService.show('Excursão adicionada com sucesso','success');
+            this.toastService.show('Excursão adicionada com sucesso', 'success');
             this.editExcursionForm.reset();
           },
-          error: (err) => this.toastService.show('Erro ao adicionar excursao!','error')
+          error: (err) => this.toastService.show('Erro ao adicionar excursao!', 'error')
         })
       }
     }

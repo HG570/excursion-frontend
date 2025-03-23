@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApiService } from '../../../services/api.service';
 import { ViaCepService } from '../../../services/via-cep.service';
@@ -14,10 +14,10 @@ import { Router } from '@angular/router';
 export class EditschoolModalComponent {
   @Input() schoolId: number | null = null;
   @Output() reloadSchools = new EventEmitter<void>();
-  schoolData: any = null;
+  @Input() schoolData: any = null;
   editSchoolForm: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder, private router: Router, private apiService: ApiService, private viaCepService: ViaCepService, private toastService: ToastService) {
+  constructor(private fb: FormBuilder, private router: Router, private apiService: ApiService, private viaCepService: ViaCepService, private toastService: ToastService, private cdr: ChangeDetectorRef) {
     this.editSchoolForm = this.fb.group({
       name: ['', Validators.required],
       cnpj: ['', Validators.required],
@@ -37,20 +37,20 @@ export class EditschoolModalComponent {
     }
   }
   getSchool(id: number) {
-    this.apiService.getSchool(id).subscribe(data => {
-      this.schoolData = data
-      this.editSchoolForm.patchValue({
-        name: this.schoolData?.school?.name,
-        cnpj: this.schoolData?.school?.cnpj,
-        postal_code: this.schoolData?.school?.address?.postal_code,
-        address: this.schoolData?.school?.address?.address,
-        number: this.schoolData?.school?.address?.number,
-        neighborhood: this.schoolData?.school?.address?.neighborhood,
-        city: this.schoolData?.school?.address?.city,
-        state: this.schoolData?.school?.address?.state,
-        type: this.schoolData?.school?.type,
-      });
+    this.schoolData;
+    this.cdr.detectChanges();
+    this.editSchoolForm.patchValue({
+      name: this.schoolData?.school?.name,
+      cnpj: this.schoolData?.school?.cnpj,
+      postal_code: this.schoolData?.school?.address?.postal_code,
+      address: this.schoolData?.school?.address?.address,
+      number: this.schoolData?.school?.address?.number,
+      neighborhood: this.schoolData?.school?.address?.neighborhood,
+      city: this.schoolData?.school?.address?.city,
+      state: this.schoolData?.school?.address?.state,
+      type: this.schoolData?.school?.type,
     });
+    ;
   }
   searchCEP() {
     const cep = this.sanitizeValue(this.editSchoolForm.get('postal_code')?.value);
