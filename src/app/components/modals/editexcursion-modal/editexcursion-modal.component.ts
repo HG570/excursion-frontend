@@ -13,8 +13,8 @@ import { NgFor } from '@angular/common';
 })
 export class EditexcursionModalComponent {
   @Input() excursionId: number | null = null;
-  @Output() reloadExcursions = new EventEmitter<void>();
   @Input() excursionData: any = null;
+  @Output() reloadExcursions = new EventEmitter<void>();
   editExcursionForm: FormGroup = new FormGroup({});
   schools: any[] = [];
 
@@ -43,6 +43,7 @@ export class EditexcursionModalComponent {
   getExcursion(id: number) {
     this.excursionData;
     this.excursionId = id;
+    this.cdr.detectChanges();
     this.editExcursionForm.patchValue({
       name: this.excursionData?.name,
       fk_school_id: this.excursionData?.school.id_school,

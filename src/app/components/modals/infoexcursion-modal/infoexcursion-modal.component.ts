@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { ToastService } from '../../../services/toast.service';
 import { ExcursionSelectionService } from '../../../services/excursion-selection.service';
@@ -11,9 +11,9 @@ import { ExcursionSelectionService } from '../../../services/excursion-selection
 })
 export class InfoexcursionModalComponent {
   @Input() excursionId: number | null = null;
-  excursionData: any = null;
+  @Input() excursionData: any = null;
 
-  constructor(private apiService: ApiService, private toastService: ToastService, private excursionSelectionService: ExcursionSelectionService) {}
+  constructor(private apiService: ApiService, private toastService: ToastService, private excursionSelectionService: ExcursionSelectionService, private cdr: ChangeDetectorRef) {}
 
   ngOnChanges() {
     if (this.excursionId) {
@@ -26,8 +26,7 @@ export class InfoexcursionModalComponent {
   }
 
   getExcursion(id: number) {
-    this.apiService.getExcursion(id).subscribe(data => {
-      this.excursionData = data;
-    });
+    this.excursionData;
+    this.cdr.detectChanges();
   }
 }

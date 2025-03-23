@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { ToastService } from '../../../services/toast.service';
 import { SchoolSelectionService } from '../../../services/school-selection.service';
@@ -11,9 +11,9 @@ import { SchoolSelectionService } from '../../../services/school-selection.servi
 })
 export class InfoschoolModalComponent {
   @Input() schoolId: number | null = null;
-  schoolData: any = null;
+  @Input() schoolData: any = null;
 
-  constructor(private apiService: ApiService, private toastService: ToastService, private schoolSelectionService: SchoolSelectionService) {}
+  constructor(private apiService: ApiService, private toastService: ToastService, private schoolSelectionService: SchoolSelectionService, private cdr: ChangeDetectorRef) {}
 
   ngOnChanges() {
     if (this.schoolId) {
@@ -24,12 +24,10 @@ export class InfoschoolModalComponent {
   setSelectedSchoolId(id: number | null) {
     this.schoolSelectionService.setSelectedSchoolId(id);
   }
-  
-  getSchool(id: number) {
-    this.apiService.getSchool(id).subscribe(data => {
-      this.schoolData = data;
-    });
-  }
 
+  getSchool(id: number) {
+    this.schoolData;
+    this.cdr.detectChanges();
+  }
   
 }

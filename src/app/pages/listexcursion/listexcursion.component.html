@@ -30,7 +30,7 @@
         </table>
     </div>
     <app-infoexcursion-modal class="modal fade" id="info-excursion-modal" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" [excursionId]="selectedExcursionId"/>
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" [excursionId]="selectedExcursionId" [excursionData]="excursionData"/>
     <app-editexcursion-modal class="modal fade" id="edit-excursion-modal" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" [excursionId]="selectedExcursionId" [excursionData]="excursionData" (reloadExcursions)="reloadExcursions()" />
     <app-delete-excursion-modal class="modal fade" id="delete-excursion-modal" data-bs-backdrop="static" data-bs-keyboard="false"

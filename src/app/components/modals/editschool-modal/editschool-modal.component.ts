@@ -13,8 +13,9 @@ import { Router } from '@angular/router';
 })
 export class EditschoolModalComponent {
   @Input() schoolId: number | null = null;
-  @Output() reloadSchools = new EventEmitter<void>();
   @Input() schoolData: any = null;
+  @Output() reloadSchools = new EventEmitter<void>();
+
   editSchoolForm: FormGroup = new FormGroup({});
 
   constructor(private fb: FormBuilder, private router: Router, private apiService: ApiService, private viaCepService: ViaCepService, private toastService: ToastService, private cdr: ChangeDetectorRef) {
@@ -27,10 +28,11 @@ export class EditschoolModalComponent {
       neighborhood: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
-      country: ['Brasil', Validators.required],
+      country: ['Brasil'],
       type: ['', Validators.required],
     });
   }
+
   ngOnChanges() {
     if (this.schoolId) {
       this.getSchool(this.schoolId);
@@ -48,9 +50,8 @@ export class EditschoolModalComponent {
       neighborhood: this.schoolData?.school?.address?.neighborhood,
       city: this.schoolData?.school?.address?.city,
       state: this.schoolData?.school?.address?.state,
-      type: this.schoolData?.school?.type,
+      type: this.schoolData?.school?.type ? '1' : '0',
     });
-    ;
   }
   searchCEP() {
     const cep = this.sanitizeValue(this.editSchoolForm.get('postal_code')?.value);

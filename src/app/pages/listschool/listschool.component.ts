@@ -24,8 +24,9 @@ export class ListschoolComponent implements OnInit {
 
   setSelectedSchoolId(id: number) {
     this.selectedSchoolId = id;
+    this.loadSchool(id)
   }
-  
+
   loadSchool(id: number) {
     this.apiService.getSchool(id).subscribe(data => {
       this.schoolData = data;
